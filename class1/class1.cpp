@@ -1,13 +1,13 @@
 // Q. Given an array of size n + 1 with numbers in the range 1 to n
-// With one number repeating twice
-// return the repeating number
+// With one number repeating more than once but all other numbers are occcuring only once
+// return the repeating number without modifying the array and in O(1) space and O(n) time
 
 #include <bits/stdc++.h>
 using namespace std;
 
 class RepeatingNumber {
 public:
-    // Approach 1: Brute force
+    // Approach 1: Brute force - No mutation
     // Time Complexity: O(n^2)
     // Space Complexity: O(1)
     int BruteForce(vector<int>& nums) {
@@ -21,7 +21,7 @@ public:
         }
     }
 
-    // Approach 2: Sorting
+    // Approach 2: Sorting - Mutation
     // Time Complexity: O(nlogn)
     // Space Complexity: O(1)
     int Sorting(vector<int>& nums) {
@@ -34,7 +34,7 @@ public:
         }
     }
 
-    // Approach 3: HashMap
+    // Approach 3: HashMap - No Mutation
     // Time Complexity: O(n)
     // Space Complexity: O(n)
     int HashMap(vector<int>& nums) {
@@ -44,13 +44,13 @@ public:
             hash[nums[i]]++;
         }
         for (int i = 0; i < n; i++) {
-            if (hash[i] == 2) {
+            if (hash[i] >= 2) {
                 return i;
             }
         }
     }
 
-    // Approach 4: Sum till N
+    // Approach 4: Sum till N - Works only if number is repeating only twice and Won't work if the number is too large
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int sumTillN(vector<int>& nums) {
@@ -63,7 +63,7 @@ public:
         return sumTillN - sum;
     }
 
-    // Approach 5: XOR Property
+    // Approach 5: XOR Property - Works only if number is repeating only twice
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int XORproperty(vector<int>& nums) {
@@ -77,7 +77,7 @@ public:
         return xortillN ^ xorOfNums;
     }
 
-    // Approach 6: HashMap Optimisation - Using the Given Array as HashMap
+    // Approach 6: HashMap Optimisation - Using the Given Array as HashMap - Mutation
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int HashOptimized(vector<int>& nums) {
@@ -90,19 +90,20 @@ public:
         }
     }
 
-    // Approach 7: Linked List Cycle Detection
+    // Approach 7: Linked List Cycle Detection - No Mutation
+    // Every condition in the question is satisfied by the given array
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int LinkedList(vector<int>& nums) {
         int slow = 0;
         int fast = 0;
         int n = nums.size();
-        while (slow != fast) {
+        do {
             slow = nums[slow];
             fast = nums[nums[fast]];
-        }
+        } while (slow != fast);
         slow = 0;
-        while(slow != fast) {
+        while (slow != fast) {
             slow = nums[slow];
             fast = nums[fast];
         }
@@ -110,7 +111,7 @@ public:
     }
 };
 
-int main(){
+int main() {
     int n;
     cin >> n;
     vector<int> nums(n);

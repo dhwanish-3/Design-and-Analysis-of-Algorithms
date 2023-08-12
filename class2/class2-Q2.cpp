@@ -1,4 +1,4 @@
-// Q2. Given an array of if size n return the second lowest value in the array
+// Q2. Given an array of size n return the second lowest value in the array
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,7 +42,7 @@ public:
     }
 };
 
-int main(){
+int main() {
     int n;
     cin >> n;
     vector<int> nums(n);
