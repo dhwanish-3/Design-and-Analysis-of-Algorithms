@@ -34,7 +34,7 @@ public:
         }
     }
 
-    // Aproach 3: HashMap
+    // Approach 3: HashMap
     // Time Complexity: O(n)
     // Space Complexity: O(n)
     int HashMap(vector<int>& nums) {
@@ -63,7 +63,7 @@ public:
         return sumTillN - sum;
     }
 
-    // Aproach 5: XOR Property
+    // Approach 5: XOR Property
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int XORproperty(vector<int>& nums) {
@@ -77,7 +77,7 @@ public:
         return xortillN ^ xorOfNums;
     }
 
-    // Aproach 6: HashMap Optimisation - Using the Given Array as HashMap
+    // Approach 6: HashMap Optimisation - Using the Given Array as HashMap
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     int HashOptimized(vector<int>& nums) {
@@ -89,6 +89,25 @@ public:
             nums[i] = (-nums[i]);
         }
     }
+
+    // Approach 7: Linked List Cycle Detection
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    int LinkedList(vector<int>& nums) {
+        int slow = 0;
+        int fast = 0;
+        int n = nums.size();
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        slow = 0;
+        while(slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
 };
 
 int main(){
@@ -98,6 +117,6 @@ int main(){
     for(int i = 0; i < n; i++) {
         cin >> nums[i];
     }
-    cout << RepeatingNumber().BruteForce(nums) << endl;
+    cout << RepeatingNumber().LinkedList(nums) << endl;
     return 0;
 }
