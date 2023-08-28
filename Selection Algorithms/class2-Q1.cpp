@@ -48,7 +48,8 @@ public:
             maxy = nums[1];
             mini = nums[0];
         }
-        for (int i = 2; i < n; i += 2) {
+        int i;
+        for (i = 2; i < n; i += 2) {
             if (nums[i] > nums[i + 1]) {
                 maxy = max(maxy, nums[i]);
                 mini = min(mini, nums[i + 1]);
@@ -56,6 +57,10 @@ public:
                 maxy = max(maxy, nums[i + 1]);
                 mini = min(mini, nums[i]);
             }
+        }
+        if (i == n) {
+            maxy = max(maxy, nums[i]);
+            mini = min(mini, nums[i]);
         }
         return make_pair(mini, maxy);
     }

@@ -40,6 +40,30 @@ public:
         }
         return min2;
     }
+
+    // Approach 2: KnockOut Tournament
+    // Time Complexity: O(n)
+    // Space Complexity: O(n)
+    int knockOutTournament(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 1) {
+            return nums[0];
+        }
+        int mini = min(nums[0], nums[1]);
+        for (int i = 2; i < n; i++) {
+            mini = min(mini, nums[i]);
+        } // got minimum
+        vector<int> tournament(2 * n - 1, 0);
+        for (int i = n - 1; i < tournament.size(); i += 2) {
+            tournament[i] = nums[i - n + 1];
+            tournament[i + 1] = nums[i - n + 2];
+            if (tournament[i] > tournament[i + 1]) {
+                tournament[i / 2] = i + 1;
+            } else {
+                tournament[i / 2] = i;
+            }
+        }
+    }
 };
 
 int main() {
